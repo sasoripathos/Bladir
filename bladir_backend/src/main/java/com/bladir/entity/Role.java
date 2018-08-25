@@ -1,5 +1,7 @@
 package com.bladir.entity;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,15 +16,18 @@ public class Role {
 	@Column(name="role_name")
 	private String roleName;
 	
+	@OneToMany(mappedBy="role", fetch=FetchType.LAZY,
+			cascade={CascadeType.DETACH,CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REFRESH})
+	private List<User> users;
+
 	public Role() {
 		
 	}
 
-	public Role(int id, String roleName) {
-		this.id = id;
+	public Role(String roleName) {
 		this.roleName = roleName;
 	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -38,5 +43,13 @@ public class Role {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-	
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
 }

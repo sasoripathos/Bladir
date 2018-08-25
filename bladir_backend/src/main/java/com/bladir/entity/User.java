@@ -1,10 +1,14 @@
 package com.bladir.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -23,13 +27,15 @@ public class User {
 	@Column(name="password")
 	private String password;
 
-	@Column(name="role_id")
-	private int roleId;
+	@ManyToOne(cascade={CascadeType.DETACH,CascadeType.PERSIST,
+						CascadeType.MERGE,CascadeType.REFRESH}, fetch=FetchType.LAZY)
+	@JoinColumn(name="role_id")
+	private Role role;
 
-	@Column(name="firstName")
+	@Column(name="firstname")
 	private String firstName;
 
-	@Column(name="lastName")
+	@Column(name="lastname")
 	private String lastName;
 
 	@Column(name="gender")
@@ -42,11 +48,11 @@ public class User {
 		
 	}
 
-	public User(String username, String password, int roleId, String firstName, String lastName, String gender,
+	public User(String username, String password, Role role, String firstName, String lastName, String gender,
 			String email) {
 		this.username = username;
 		this.password = password;
-		this.roleId = roleId;
+		this.role = role;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
@@ -77,12 +83,12 @@ public class User {
 		this.password = password;
 	}
 
-	public int getRoleId() {
-		return roleId;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	public String getFirstName() {
@@ -116,4 +122,5 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 }
