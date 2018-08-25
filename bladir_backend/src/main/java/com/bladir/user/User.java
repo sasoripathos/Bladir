@@ -1,13 +1,36 @@
 package com.bladir.user;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class User {
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
+
+	@Column(name="username")
 	private String username;
+
+	@Column(name="password")
 	private String password;
+
+	@Column(name="role_id")
 	private int roleId;
+
+	@Column(name="firstName")
 	private String firstName;
+
+	@Column(name="lastName")
 	private String lastName;
+
+	@Column(name="gender")
 	private String gender;
+
+	@Column(name="email")
 	private String email;
 	
 	public User() {
