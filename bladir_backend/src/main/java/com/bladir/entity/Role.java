@@ -1,9 +1,9 @@
-package com.bladir.role;
+package com.bladir.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
+@Table(name="role")
 public class Role {
 
 	@Id
