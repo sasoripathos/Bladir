@@ -1,13 +1,9 @@
 package com.bladir.entity;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="result")
@@ -16,10 +12,7 @@ public class Result {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="record_id")
 	private int id;
-	
-	@Column(name="patient_id")
-	private int patientId;
-	
+
 	@Column(name="date")
 	private Date date;
 	
@@ -32,6 +25,17 @@ public class Result {
 	@Column(name="value")
 	private double value;
 
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinColumn(name="patient_id")
+	private User user;
+
+
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinColumn(name="test_name")
+	private Standard standard;
+
 	public Result() {
 		
 	}
@@ -42,14 +46,6 @@ public class Result {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getPatientId() {
-		return patientId;
-	}
-
-	public void setPatientId(int patientId) {
-		this.patientId = patientId;
 	}
 
 	public Date getDate() {
@@ -84,8 +80,23 @@ public class Result {
 		this.value = value;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Standard getStandard() {
+		return standard;
+	}
+
+	public void setStandard(Standard standard) {
+		this.standard = standard;
+	}
+
 	public Result(int patientId, Date date, String name, String value_name, Double value) {
-		this.patientId = patientId;
 		this.date = date;
 		this.name = name;
 		this.value_name = value_name;
