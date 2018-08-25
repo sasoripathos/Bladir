@@ -5,7 +5,7 @@ import {AggregateDataComponent} from './aggregate-data/aggregate-data.component'
 const patientRouter: Routes = [
   {
     path: '',
-    redirectTo: '/aggregate-data',
+    redirectTo: './aggregate-data',
     pathMatch: 'full'
   },
   {

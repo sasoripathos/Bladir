@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log('login succeed');
-    this.router.navigateByUrl('patient');
+    this.router.navigateByUrl('patient/aggregate-data');
   }
 
 }

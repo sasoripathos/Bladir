@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
+import {PatientComponent} from './patient/patient.component';
 
 export const routes: Routes = [
   {
@@ -9,6 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'patient',
+    component: PatientComponent,
     loadChildren: './patient/patient.module#PatientModule'
   }
 ];
