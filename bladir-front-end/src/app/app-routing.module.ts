@@ -12,7 +12,7 @@ export const routes: Routes = [
     path: 'patient',
     component: PatientComponent,
     loadChildren: './patient/patient.module#PatientModule'
-  }
+  },
 ];
 
 @NgModule({

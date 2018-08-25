@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AggregateDataComponent} from './aggregate-data/aggregate-data.component';
 import {TrendDataComponent} from './trend-data/trend-data.component';
+import {AccountComponent} from './account/account.component';
 
 const patientRouter: Routes = [
   {
@@ -16,6 +17,10 @@ const patientRouter: Routes = [
   {
     path: 'trend-data',
     component: TrendDataComponent
+  },
+  {
+    path: 'account',
+    component: AccountComponent
   }
 ];
 
