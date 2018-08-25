@@ -1,8 +1,39 @@
 <div>
-  <p>
-    login works!
-  </p>
-  <button class="ui button" (click)="onSubmit()">
-    Login
-  </button>
+  <div class="ui middle aligned center aligned grid">
+    <div class="five wide column"></div>
+    <div class="six wide column" style="margin-top: 10rem;">
+      <h2 class="ui image header">
+        <div class="content">
+          Log-in to your account
+        </div>
+      </h2>
+      <form class="ui large form">
+        <div class="ui stacked secondary  segment">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" name="username" [(ngModel)]="username" placeholder="Username">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" name="password" [(ngModel)]="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="ui fluid large teal submit button" (click)="onSubmit()">
+            Login
+          </div>
+        </div>
+
+        <div class="ui error message"></div>
+
+      </form>
+
+      <div class="ui message">
+        New to us? <a routerLink="/register">Register</a>
+      </div>
+    </div>
+    <div class="five wide column"></div>
+  </div>
 </div>
