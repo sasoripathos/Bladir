@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import * as echarts from 'echarts';
-import {EChartOption} from 'echarts';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpService} from '../../services/http.service';
 
 @Component({
   selector: 'app-bar-chart',
@@ -162,17 +161,13 @@ export class BarChartComponent implements OnInit {
   };
 
   constructor(
-    private httpClient: HttpClient,
+    private httpService: HttpService
   ) {
   }
 
   ngOnInit() {
-    this.httpClient.get('http://localhost:8080/echart/barchart/jerry?date=20180825', {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      })
-    }).subscribe(
+    this.httpService.getBarChart('20180825')
+      .subscribe(
       (response: Response) => {
         console.log(response);
         this.option = {
@@ -214,25 +209,25 @@ export class BarChartComponent implements OnInit {
             }
           ],
           series: response['series']
-            // [
-            // {
-            //   'name': 'Lower Bound',
-            //   'type': 'bar',
-            //   'data': [25, 25, 30],
-            //   'barGap': 0
-            // },
-            // {
-            //   'name': 'Test Value',
-            //   'type': 'bar',
-            //   'data': [30, 50, 15],
-            //   'barGap': 0
-            // },
-            // {
-            //   'name': 'Upper Bound',
-            //   'type': 'bar',
-            //   'data': [40, 40, 45],
-            //   'barGap': 0
-            // }
+          // [
+          // {
+          //   'name': 'Lower Bound',
+          //   'type': 'bar',
+          //   'data': [25, 25, 30],
+          //   'barGap': 0
+          // },
+          // {
+          //   'name': 'Test Value',
+          //   'type': 'bar',
+          //   'data': [30, 50, 15],
+          //   'barGap': 0
+          // },
+          // {
+          //   'name': 'Upper Bound',
+          //   'type': 'bar',
+          //   'data': [40, 40, 45],
+          //   'barGap': 0
+          // }
 
           // ]
         };
@@ -304,7 +299,7 @@ export class BarChartComponent implements OnInit {
         }
       ],
       series: series
-    }
+    };
 
     this.option = new_option;
   }
