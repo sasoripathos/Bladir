@@ -13,7 +13,7 @@ public class Role {
 	@Column(name="id")
 	private int id;
 
-	@Column(name="role_name")
+	@Column(name="role_name", unique=true)
 	private String roleName;
 	
 	@OneToMany(mappedBy="role", fetch=FetchType.LAZY,
