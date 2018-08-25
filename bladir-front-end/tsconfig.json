@@ -10,6 +10,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
+    "paths": {
+      "echarts": ["node_modules/echarts/dist/echarts.min.js"]
+    },
     "typeRoots": [
       "node_modules/@types"
     ],
