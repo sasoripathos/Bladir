@@ -93,7 +93,7 @@ public class EchartFactory {
 		DataSeriesElement lowerDataSeries = new BarChartSeriesElement("Lower Bound", "bar", lowerData, 0);
 		
 		List<DataSeriesElement> dataSeries = new ArrayList<>();
-		dataSeries.add(mainDataSeries); dataSeries.add(upperDataSeries); dataSeries.add(lowerDataSeries);
+		dataSeries.add(lowerDataSeries); dataSeries.add(mainDataSeries); dataSeries.add(upperDataSeries); 
 		return new Dataset(legend, xAxis, dataSeries);
 	}
 }
