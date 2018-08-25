@@ -6,6 +6,10 @@ export const routes: Routes = [
   {
     path: '',
     component: LoginComponent
+  },
+  {
+    path: 'patient',
+    loadChildren: './patient/patient.module#PatientModule'
   }
 ];
 
