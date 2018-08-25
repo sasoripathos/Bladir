@@ -2,7 +2,7 @@ package com.bladir.echart;
 
 import java.util.List;
 
-public abstract class DataSeries {
+public abstract class DataSeriesElement {
 	private String name;
 	private String type;
 	private List<Number> data;

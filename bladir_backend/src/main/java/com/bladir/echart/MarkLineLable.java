@@ -2,7 +2,14 @@ package com.bladir.echart;
 
 public class MarkLineLable {
 	private String formatter;
+	public MarkLineLable() {
+		
+	}
 	
+	public MarkLineLable(String formatter) {
+		this.formatter = formatter;
+	}
+
 	public String getFormatter() {
 		return formatter;
 	}

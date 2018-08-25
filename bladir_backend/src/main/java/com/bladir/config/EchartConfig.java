@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 @ConfigurationProperties("echart")
 public class EchartConfig {
 	
-	
+	private String dateFormat;
 	private String markLineLableFormat;
 
 	public String getMarkLineLableFormat() {
@@ -18,5 +18,13 @@ public class EchartConfig {
 
 	public void setMarkLineLableFormat(String markLineLableFormat) {
 		this.markLineLableFormat = markLineLableFormat;
+	}
+	
+	public String getDateFormat() {
+		return dateFormat;
+	}
+
+	public void setDateFormat(String dateFormat) {
+		this.dateFormat = dateFormat;
 	}
 }

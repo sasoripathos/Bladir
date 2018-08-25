@@ -6,7 +6,10 @@ public class Legend {
 	private List<String> data;
 
 	public Legend() {
-		super();
+	}
+
+	public Legend(List<String> data) {
+		this.data = data;
 	}
 
 	public List<String> getData() {
