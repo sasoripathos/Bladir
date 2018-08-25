@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.bladir.bladir.App;
-import com.bladir.database_service.UserService;
+import com.bladir.database_service.UserServiceImpl;
 
 /**
  * Hello world!
