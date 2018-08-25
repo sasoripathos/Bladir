@@ -11,6 +11,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class BarChartComponent implements OnInit {
 
   echartsIntance: any;
+  barData;
 
 
   posList = [
@@ -110,7 +111,6 @@ export class BarChartComponent implements OnInit {
     },
     legend: {
       'data': ['Lower Bound', 'Test Value', 'Upper Bound']
-
     },
     toolbox: {
       show: true,
@@ -142,31 +142,19 @@ export class BarChartComponent implements OnInit {
       {
         'name': 'Lower Bound',
         'type': 'bar',
-        'data': [
-          25,
-          25,
-          25
-        ],
+        'data': [25, 25, 30],
         'barGap': 0
       },
       {
         'name': 'Test Value',
         'type': 'bar',
-        'data': [
-          30,
-          50,
-          15
-        ],
+        'data': [30, 50, 15],
         'barGap': 0
       },
       {
         'name': 'Upper Bound',
         'type': 'bar',
-        'data': [
-          40,
-          40,
-          45
-        ],
+        'data': [40, 40, 45],
         'barGap': 0
       }
 
@@ -187,6 +175,25 @@ export class BarChartComponent implements OnInit {
     }).subscribe(
       response => {
         console.log(response);
+        // const series = JSON.stringify(response['series']);
+        // const legend = JSON.stringify(response['legend']);
+        // const xAxisData = JSON.stringify(response['xAxisData']);
+        // this.option.series = series;
+        // this.option.legend = legend;
+        // this.option.xAxis[2] = xAxisData;
+        // const barData = response.series;
+        // console.log(response);
+        // this.barData = barData;
+        // this.updateData();
+        // this.updateData(response['legend'], response['series'], response['xAxisData']);
+        // this.option['lengend'] = response['legend'];
+        // this.option['series'] = response['series'];
+        // this.option['xAxiaData'] = response['xAxiaData'];
+        // console.log(response['series']);
+        // // console.log(response.series);
+        // console.log(this.option['seires']);
+        // console.log(this.option);
+        // this.updateData()
       },
       error => {
         console.log(error);
@@ -198,4 +205,43 @@ export class BarChartComponent implements OnInit {
     this.echartsIntance = ec;
   }
 
+  updateData() {
+    const series = this.barData['series'];
+    const legend = this.barData['legend'];
+    const xAxisData = this.barData['xAxisData'];
+
+    const new_option = {
+      color: ['#003366', '#006699', '#e5323e'],
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      legend: legend,
+      toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+          mark: {show: true},
+          dataView: {show: true, readOnly: false},
+          magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+          restore: {show: true},
+          saveAsImage: {show: true}
+        }
+      },
+      calculable: true,
+      xAxis: xAxisData,
+      yAxis: [
+        {
+          type: 'value'
+        }
+      ],
+      series: series
+    }
+
+    this.option = new_option;
+  }
 }
