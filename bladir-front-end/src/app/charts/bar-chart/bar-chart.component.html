@@ -1,1 +1,13 @@
-<div echarts [options]="option" class="demo-chart" (chartInit)="onChartInit($event)"></div>
+<div class="ui fluid input">
+  <!--<input type="text" placeholder="Search a very wide input..." (click)="changeDate($event)">-->
+
+  <input #textbox id="data" type="text" required placeholder="Enter the date you want to ask here!">
+  <button (click)="changeDate(textbox.value)">
+    <i class="search icon"></i>
+  </button>
+  <!--<button (click)="textValue=''">Clear</button>-->
+</div>
+
+<div *ngIf="this.graphLoaded">
+  <div echarts [options]="option" class="demo-chart" (chartInit)="onChartInit($event)"></div>
+</div>
