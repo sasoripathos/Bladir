@@ -22,11 +22,18 @@ public class EchartFactory {
 	@Autowired
 	private EchartConfig config;
 	
-	@GetMapping("linechart/{id}")
-	public Dataset getLineChart(@PathVariable int id, @RequestParam("value") String value) throws InvalidDateException {
+	@GetMapping("linechart/{username}")
+	public Dataset getLineChart(@PathVariable String username, @RequestParam("value") String value, @RequestParam("times") int times) throws InvalidDateException {
 		//TODO: db related 
 		
 		return getSampleLineChart(value);
+	}
+	
+	@GetMapping("barchart/{username}")
+	public Dataset getBarChart(@PathVariable String username, @RequestParam("date") String datestring) throws InvalidDateException {
+		Date date = parseInputDate(datestring);
+		
+		return getSampleBarChart();
 	}
 	private Date parseInputDate(String dateinput) throws InvalidDateException {
 		SimpleDateFormat format = new SimpleDateFormat(config.getDateFormat());
@@ -41,25 +48,52 @@ public class EchartFactory {
 	private Dataset getSampleLineChart(String value) throws InvalidDateException {
 		//Date date = parseInputDate(dateText);
 		// create legend
-		List<String> a = new ArrayList();
+		List<String> a = new ArrayList<>();
 		a.add(value + " Trend");
 		Legend legend = new Legend(a);
 		// create x axis
-		List<String> xAxis = new ArrayList();
+		List<String> xAxis = new ArrayList<>();
 		xAxis.add("2018/07/25"); xAxis.add("2018/08/25"); xAxis.add("2018/09/25");
-		List<Number> data = new ArrayList();
+		//main data
+		List<Number> data = new ArrayList<>();
 		data.add(17);  data.add(30); data.add(22);
 		//MarkLineLable lable = new MarkLineLable(config.getMarkLineLableFormat());
 		BoundLine upperbound = new BoundLine(25, "upper bound"/*, lable*/);
 		BoundLine lowerbound = new BoundLine(15, "lower bound"/*, lable*/);
 		List<BoundLine> lineset = new ArrayList<BoundLine> ();
 		lineset.add(upperbound); lineset.add(lowerbound);
-;		MarkLineSet markLine = new MarkLineSet(lineset);
+		MarkLineSet markLine = new MarkLineSet(lineset);
 		
 		DataSeriesElement element = new LineChartSeriesElement("WBC Trend", "line", data, markLine);
 		List<DataSeriesElement> dataSeries = new ArrayList<>();
 		dataSeries.add(element);
 		
+		return new Dataset(legend, xAxis, dataSeries);
+	}
+	
+	private Dataset getSampleBarChart() {
+		// create legend
+		List<String> a = new ArrayList<>();
+		a.add("Lower Bound"); a.add("Test Value"); a.add("Upper Bound");
+		Legend legend = new Legend(a);
+		// create x axis
+		List<String> xAxis = new ArrayList<>();
+		xAxis.add("WBC"); xAxis.add("RBC"); xAxis.add("MVC");
+		// main data
+		List<Number> data = new ArrayList<>();
+		data.add(30);  data.add(50); data.add(15);
+		DataSeriesElement mainDataSeries = new BarChartSeriesElement("Test Value", "bar", data, 0);
+		
+		List<Number> upperData = new ArrayList<>();
+		upperData.add(40);  upperData.add(40); upperData.add(45);
+		DataSeriesElement upperDataSeries = new BarChartSeriesElement("Upper Bound", "bar", upperData, 0);
+		
+		List<Number> lowerData = new ArrayList<>();
+		lowerData.add(25);  lowerData.add(25); lowerData.add(25);
+		DataSeriesElement lowerDataSeries = new BarChartSeriesElement("Lower Bound", "bar", lowerData, 0);
+		
+		List<DataSeriesElement> dataSeries = new ArrayList<>();
+		dataSeries.add(mainDataSeries); dataSeries.add(upperDataSeries); dataSeries.add(lowerDataSeries);
 		return new Dataset(legend, xAxis, dataSeries);
 	}
 }
