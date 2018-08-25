@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class EchartFactory {
 	private EchartConfig config;
 	
 	@GetMapping("linechart/{username}")
+	@CrossOrigin("*")
 	public Dataset getLineChart(@PathVariable String username, @RequestParam("value") String value, @RequestParam("times") int times) throws InvalidDateException {
 		//TODO: db related 
 		
@@ -30,6 +32,7 @@ public class EchartFactory {
 	}
 	
 	@GetMapping("barchart/{username}")
+	@CrossOrigin("*")
 	public Dataset getBarChart(@PathVariable String username, @RequestParam("date") String datestring) throws InvalidDateException {
 		Date date = parseInputDate(datestring);
 		
