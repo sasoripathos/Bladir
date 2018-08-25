@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bladir.config.EchartConfig;
+import com.bladir.database_service.UserService;
 import com.bladir.exception.InvalidDateException;
 
 @RestController
@@ -22,6 +23,9 @@ import com.bladir.exception.InvalidDateException;
 public class EchartFactory {
 	@Autowired
 	private EchartConfig config;
+	
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping("linechart/{username}")
 	@CrossOrigin("*")
@@ -34,6 +38,13 @@ public class EchartFactory {
 	@GetMapping("barchart/{username}")
 	@CrossOrigin("*")
 	public Dataset getBarChart(@PathVariable String username, @RequestParam("date") String datestring) throws InvalidDateException {
+		try {
+			userService.createUser();
+			System.out.println("success");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("fail");
+		}
 		Date date = parseInputDate(datestring);
 		
 		return getSampleBarChart();
