@@ -31,7 +31,7 @@ public class EchartFactory {
 	@CrossOrigin("*")
 	public Dataset getLineChart(@PathVariable String username, @RequestParam("value") String value, @RequestParam("times") int times) throws InvalidDateException {
 		//TODO: db related 
-		
+		userService.queryUser();
 		return getSampleLineChart(value);
 	}
 	
