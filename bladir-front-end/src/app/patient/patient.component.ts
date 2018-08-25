@@ -6,13 +6,29 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./patient.component.css']
 })
 export class PatientComponent implements OnInit {
-  aggregateActive = false;
-  trendActive = false;
+  aggregateActive: boolean;
+  trendActive: boolean;
 
   constructor() {
+    this.activateAggregate();
   }
 
   ngOnInit() {
+  }
+
+  activateAggregate() {
+    this.aggregateActive = true;
+    this.trendActive = false;
+  }
+
+  activateTrend() {
+    this.aggregateActive = false;
+    this.trendActive = true;
+  }
+
+  deactivate() {
+    this.aggregateActive = false;
+    this.trendActive = false;
   }
 
 }
