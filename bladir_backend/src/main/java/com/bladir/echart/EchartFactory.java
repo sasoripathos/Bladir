@@ -24,27 +24,27 @@ public class EchartFactory {
 	@Autowired
 	private EchartConfig config;
 	
-	@Autowired
-	private UserService userService;
+	/*@Autowired
+	private UserService userService;*/
 	
 	@GetMapping("linechart/{username}")
 	@CrossOrigin("*")
 	public Dataset getLineChart(@PathVariable String username, @RequestParam("value") String value, @RequestParam("times") int times) throws InvalidDateException {
 		//TODO: db related 
-		userService.queryUser();
+		//userService.queryUser();
 		return getSampleLineChart(value);
 	}
 	
 	@GetMapping("barchart/{username}")
 	@CrossOrigin("*")
 	public Dataset getBarChart(@PathVariable String username, @RequestParam("date") String datestring) throws InvalidDateException {
-		try {
+		/*try {
 			userService.createUser();
 			System.out.println("success");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("fail");
-		}
+		}*/
 		Date date = parseInputDate(datestring);
 		
 		return getSampleBarChart();

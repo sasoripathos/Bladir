@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const token = 'Basic: ' + btoa(this.username + ':' + this.password);
     if (this.authenticationService.authenticate(token)) {
-      localStorage.setItem('User', token);
+      localStorage.setItem('User', this.username);
       console.log(this.returnUrl);
       this.router.navigateByUrl(this.returnUrl);
     } else {

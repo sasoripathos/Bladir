@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import * as echarts from 'echarts';
-import {EChartOption} from 'echarts';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpService} from '../../services/http.service';
 
 @Component({
   selector: 'app-bar-chart',
@@ -142,7 +141,7 @@ export class BarChartComponent implements OnInit {
       {
         'name': 'Lower Bound',
         'type': 'bar',
-        'data': [25, 25, 30],
+        'data': [25, 25, 40],
         'barGap': 0
       },
       {
@@ -162,23 +161,80 @@ export class BarChartComponent implements OnInit {
   };
 
   constructor(
-    private httpClient: HttpClient,
+    private httpService: HttpService
   ) {
   }
 
   ngOnInit() {
-    this.httpClient.get('http://localhost:8080/echart/barchart/jerry?date=20180825', {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      })
-    }).subscribe(
-      response => {
+    this.httpService.getBarChart('20180825')
+      .subscribe(
+      (response: Response) => {
         console.log(response);
+        this.option = {
+          color: ['#003366', '#006699', '#e5323e'],
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
+          },
+          legend: {
+            data: response['legend']['data']
+            // 'data': ['Lower Bound', 'Test Value', 'Upper Bound']
+          },
+          toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+              mark: {show: true},
+              dataView: {show: true, readOnly: false},
+              magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+              restore: {show: true},
+              saveAsImage: {show: true}
+            }
+          },
+          calculable: true,
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {show: false},
+              data: response['xAxisData']
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value'
+            }
+          ],
+          series: response['series']
+          // [
+          // {
+          //   'name': 'Lower Bound',
+          //   'type': 'bar',
+          //   'data': [25, 25, 30],
+          //   'barGap': 0
+          // },
+          // {
+          //   'name': 'Test Value',
+          //   'type': 'bar',
+          //   'data': [30, 50, 15],
+          //   'barGap': 0
+          // },
+          // {
+          //   'name': 'Upper Bound',
+          //   'type': 'bar',
+          //   'data': [40, 40, 45],
+          //   'barGap': 0
+          // }
+
+          // ]
+        };
         // const series = JSON.stringify(response['series']);
         // const legend = JSON.stringify(response['legend']);
         // const xAxisData = JSON.stringify(response['xAxisData']);
-        // this.option.series = series;
+        // this.option.series = response.series;
         // this.option.legend = legend;
         // this.option.xAxis[2] = xAxisData;
         // const barData = response.series;
@@ -187,13 +243,16 @@ export class BarChartComponent implements OnInit {
         // this.updateData();
         // this.updateData(response['legend'], response['series'], response['xAxisData']);
         // this.option['lengend'] = response['legend'];
-        // this.option['series'] = response['series'];
+        // console.log(this.option['series']);
+        // this.option['series'][0]['data'] = JSON.parse(JSON.stringify(response['series'][0]['data']));
+        // console.log(JSON.parse(JSON.stringify(response['series'][0]['data'])));
         // this.option['xAxiaData'] = response['xAxiaData'];
         // console.log(response['series']);
         // // console.log(response.series);
-        // console.log(this.option['seires']);
-        // console.log(this.option);
+        // console.log(this.option['seires'][0]['data']);
+        console.log(this.option);
         // this.updateData()
+
       },
       error => {
         console.log(error);
@@ -240,7 +299,7 @@ export class BarChartComponent implements OnInit {
         }
       ],
       series: series
-    }
+    };
 
     this.option = new_option;
   }
