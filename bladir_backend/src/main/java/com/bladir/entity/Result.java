@@ -19,9 +19,6 @@ public class Result {
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="test_name")
-	private String value_name;
-	
 	@Column(name="value")
 	private double value;
 
@@ -39,7 +36,16 @@ public class Result {
 	public Result() {
 		
 	}
-	
+
+	public Result(Date date, String name, double value, User user, Standard standard) {
+		super();
+		this.date = date;
+		this.name = name;
+		this.value = value;
+		this.user = user;
+		this.standard = standard;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -64,19 +70,11 @@ public class Result {
 		this.name = name;
 	}
 
-	public String getValue_name() {
-		return value_name;
-	}
-
-	public void setValue_name(String value_name) {
-		this.value_name = value_name;
-	}
-
-	public Double getValue() {
+	public double getValue() {
 		return value;
 	}
 
-	public void setValue(Double value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 
@@ -96,10 +94,4 @@ public class Result {
 		this.standard = standard;
 	}
 
-	public Result(int patientId, Date date, String name, String value_name, Double value) {
-		this.date = date;
-		this.name = name;
-		this.value_name = value_name;
-		this.value = value;
-	}
 }
