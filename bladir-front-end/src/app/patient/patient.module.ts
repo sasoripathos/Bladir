@@ -8,12 +8,16 @@ import { AccountComponent } from './account/account.component';
 import {NgxEchartsModule} from 'ngx-echarts';
 import {BarChartComponent} from '../charts/bar-chart/bar-chart.component';
 import {LineChartComponent} from '../charts/line-chart/line-chart.component';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
 
 @NgModule({
   imports: [
     CommonModule,
     PatientRoutingModule,
-    NgxEchartsModule
+    NgxEchartsModule,
+    HttpClientModule,
+    HttpModule,
   ],
   declarations: [
     PatientComponent,
