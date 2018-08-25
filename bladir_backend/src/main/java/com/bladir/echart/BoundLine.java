@@ -3,17 +3,16 @@ package com.bladir.echart;
 public class BoundLine {
 	private Number yAxis;
 	private String name;
-	private MarkLineLable label;
+	//private MarkLineLable label;
 	
 	public BoundLine() {
 		
 	}
 	
-	
-	public BoundLine(Number yAxis, String name, MarkLineLable label) {
+	public BoundLine(Number yAxis, String name/*, MarkLineLable label*/) {
 		this.yAxis = yAxis;
 		this.name = name;
-		this.label = label;
+		//this.label = label;
 	}
 
 	public Number getyAxis() {
@@ -29,11 +28,11 @@ public class BoundLine {
 		this.name = name;
 	}
 
-	public MarkLineLable getLabel() {
+	/*public MarkLineLable getLabel() {
 		return label;
 	}
 
 	public void setLabel(MarkLineLable label) {
 		this.label = label;
-	}
+	}*/
 }

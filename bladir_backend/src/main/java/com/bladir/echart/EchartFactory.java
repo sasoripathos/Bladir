@@ -42,16 +42,16 @@ public class EchartFactory {
 		//Date date = parseInputDate(dateText);
 		// create legend
 		List<String> a = new ArrayList();
-		a.add(value);
+		a.add(value + " Trend");
 		Legend legend = new Legend(a);
 		// create x axis
 		List<String> xAxis = new ArrayList();
 		xAxis.add("2018/07/25"); xAxis.add("2018/08/25"); xAxis.add("2018/09/25");
 		List<Number> data = new ArrayList();
 		data.add(17);  data.add(30); data.add(22);
-		MarkLineLable lable = new MarkLineLable(config.getMarkLineLableFormat());
-		BoundLine upperbound = new BoundLine(25, "upper bound", lable);
-		BoundLine lowerbound = new BoundLine(15, "lower bound", lable);
+		//MarkLineLable lable = new MarkLineLable(config.getMarkLineLableFormat());
+		BoundLine upperbound = new BoundLine(25, "upper bound"/*, lable*/);
+		BoundLine lowerbound = new BoundLine(15, "lower bound"/*, lable*/);
 		List<BoundLine> lineset = new ArrayList<BoundLine> ();
 		lineset.add(upperbound); lineset.add(lowerbound);
 ;		MarkLineSet markLine = new MarkLineSet(lineset);
