@@ -58,12 +58,18 @@ public class EchartFactory {
 		for(Test item : allTests) {
 			System.out.println("database: " + item.getDate());
 			System.out.println("input: " + date);
-			if(item.getDate().equals(date)) {
+			if(/*item.getDate().equals(date)*/compareDate(item.getDate(), date)) {
 				List<Record> records = item.getRecords();
 				return createBarChartResponse(records);
 			}
 		}
 		throw new ResultsNotFoundException("No result available!");
+	}
+	
+	private boolean compareDate(Date dbDate, Date inputDate) {
+		return (dbDate.getYear() == inputDate.getYear()
+				&& dbDate.getMonth() == inputDate.getMonth()
+				&& dbDate.getDay() == inputDate.getDay());
 	}
 	
 	private Date parseInputDate(String dateinput) throws InvalidDateException {
