@@ -50,13 +50,6 @@ public class EchartFactory {
 	@CrossOrigin("*")
 	public Dataset getBarChart(@PathVariable String username, @RequestParam("date") String datestring)
 			throws InvalidDateException, UserNotFoundException, ResultsNotFoundException {
-		/*try {
-			userService.createUser();
-			System.out.println("success");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("fail");
-		}*/
 		Date date = parseInputDate(datestring);
 		User user = userService.findUserByUsername(username);
 		List<Test> allTests = user.getTests();
@@ -67,9 +60,6 @@ public class EchartFactory {
 			}
 		}
 		throw new ResultsNotFoundException("No result available!");
-		
-		
-		//return getSampleBarChart();
 	}
 	
 	private Date parseInputDate(String dateinput) throws InvalidDateException {
@@ -115,6 +105,8 @@ public class EchartFactory {
 		dataSeries.add(lowerDataSeries); dataSeries.add(testDataSeries); dataSeries.add(upperDataSeries); 
 		return new Dataset(legend, xAxis, dataSeries);
 	}
+	
+	
 	private Dataset getSampleLineChart(String value) throws InvalidDateException {
 		//Date date = parseInputDate(dateText);
 		// create legend

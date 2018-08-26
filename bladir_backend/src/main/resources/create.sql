@@ -52,7 +52,7 @@ CREATE TABLE `record` (
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-   `date` TIME DEFAULT NULL,
+   `date` date DEFAULT '2018-07-01',
    `test_comment` varchar(45) DEFAULT 'NO COMMNET',
    `patient_id` int(11) DEFAULT NULL,
    PRIMARY KEY ( `id`),
