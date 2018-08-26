@@ -19,6 +19,7 @@ import com.bladir.database_service.RecordService;
 import com.bladir.database_service.UserService;
 import com.bladir.database_service.UserServiceImpl;
 import com.bladir.entity.Record;
+import com.bladir.entity.Standard;
 import com.bladir.entity.Test;
 import com.bladir.entity.User;
 import com.bladir.exception.InvalidDateException;
@@ -58,10 +59,19 @@ public class EchartFactory {
 		}*/
 		Date date = parseInputDate(datestring);
 		User user = userService.findUserByUsername(username);
-		//List<Test> results = recordService.findAllByUserAndDate(user, date);
+		List<Test> allTests = user.getTests();
+		for(Test item : allTests) {
+			if(item.getDate().equals(date)) {
+				List<Record> records = item.getRecords();
+				return createBarChartResponse(records);
+			}
+		}
+		throw new ResultsNotFoundException("No result available!");
 		
-		return getSampleBarChart();
+		
+		//return getSampleBarChart();
 	}
+	
 	private Date parseInputDate(String dateinput) throws InvalidDateException {
 		SimpleDateFormat format = new SimpleDateFormat(config.getDateFormat());
 		try {
@@ -71,6 +81,39 @@ public class EchartFactory {
 			e.printStackTrace();
 			throw(new InvalidDateException("Invalid Date", e));
 		}
+	}
+	
+	private Legend getBarChartLegend() {
+		// create legend
+		List<String> a = new ArrayList<>();
+		a.add("Lower Bound"); a.add("Test Value"); a.add("Upper Bound");
+		return new Legend(a);
+	}
+	
+	private Dataset createBarChartResponse(List<Record> records) {
+		// Get fixed legend
+		Legend legend = getBarChartLegend();
+		// create x axis value holder
+		List<String> xAxis = new ArrayList<>();
+		// for 3 values
+		List<Number> testData = new ArrayList<>();
+		List<Number> upperData = new ArrayList<>();
+		List<Number> lowerData = new ArrayList<>();
+		for(Record item: records) {
+			Standard standard = item.getStandard();
+			xAxis.add(standard.getValuename());
+			upperData.add(standard.getHigh());
+			lowerData.add(standard.getLow());
+			testData.add(item.getValue());
+		}
+		// create data series
+		DataSeriesElement testDataSeries = new BarChartSeriesElement("Test Value", "bar", testData, 0);
+		DataSeriesElement upperDataSeries = new BarChartSeriesElement("Upper Bound", "bar", upperData, 0);
+		DataSeriesElement lowerDataSeries = new BarChartSeriesElement("Lower Bound", "bar", lowerData, 0);
+		
+		List<DataSeriesElement> dataSeries = new ArrayList<>();
+		dataSeries.add(lowerDataSeries); dataSeries.add(testDataSeries); dataSeries.add(upperDataSeries); 
+		return new Dataset(legend, xAxis, dataSeries);
 	}
 	private Dataset getSampleLineChart(String value) throws InvalidDateException {
 		//Date date = parseInputDate(dateText);
