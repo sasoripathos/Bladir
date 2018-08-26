@@ -78,7 +78,7 @@ public class EchartFactory {
 		List<DataSeriesElement> dataSeries = new ArrayList<>();
 		dataSeries.add(element);
 		
-		return new Dataset(legend, xAxis, dataSeries, "sample comment");
+		return new Dataset(legend, xAxis, dataSeries, comment);
 		//return getSampleLineChart(value);
 	}
 	
