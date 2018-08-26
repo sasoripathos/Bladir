@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PatientComponent } from './patient.component';
-import { PatientRoutingModule } from './patient-routing.module';
-import { AggregateDataComponent } from './aggregate-data/aggregate-data.component';
-import { TrendDataComponent } from './trend-data/trend-data.component';
-import { AccountComponent } from './account/account.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {PatientComponent} from './patient.component';
+import {PatientRoutingModule} from './patient-routing.module';
+import {AggregateDataComponent} from './aggregate-data/aggregate-data.component';
+import {TrendDataComponent} from './trend-data/trend-data.component';
+import {AccountComponent} from './account/account.component';
 import {NgxEchartsModule} from 'ngx-echarts';
 import {BarChartComponent} from '../charts/bar-chart/bar-chart.component';
 import {LineChartComponent} from '../charts/line-chart/line-chart.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -18,6 +19,8 @@ import {HttpModule} from '@angular/http';
     NgxEchartsModule,
     HttpClientModule,
     HttpModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     PatientComponent,
@@ -25,6 +28,8 @@ import {HttpModule} from '@angular/http';
     TrendDataComponent,
     AccountComponent,
     BarChartComponent,
-    LineChartComponent]
+    LineChartComponent
+  ]
 })
-export class PatientModule { }
+export class PatientModule {
+}

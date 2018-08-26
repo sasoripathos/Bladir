@@ -12,8 +12,18 @@ export class HttpService {
   ) {
   }
 
-  getBarChart(date) {
+  getBarChart(date: string) {
     const url = this.url + '/barchart/' + localStorage.getItem('User') + '?date=' + date;
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      })
+    });
+  }
+
+  getLineChart(value: string, times: string) {
+    const url = this.url + '/linechart/' + localStorage.getItem('User') + '?value=' + value + '&times=' + times;
     return this.http.get(url, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
