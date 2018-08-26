@@ -1,6 +1,7 @@
 package com.bladir.database_service;
 
 import com.bladir.entity.Record;
+import com.bladir.entity.Standard;
 import com.bladir.entity.Test;
 import com.bladir.entity.User;
 import com.bladir.exception.ResultsNotFoundException;
@@ -27,6 +28,15 @@ public class RecordServiceImpl implements RecordService {
 		return result.getId();
 	}
 
+	@Override
+	public Record findRecordByTestAndStandard(Test test, Standard standard) throws ResultsNotFoundException {
+		Record record = recordRepository.findRecordByTestAndStandard(test, standard);
+		if (record == null) {
+			throw (new ResultsNotFoundException("Record is not found"));
+		} else {
+			return record;
+		}
+	}
 	/*@Override
 	public List<Test> findAllByUserAndDate(User user, Date date) throws ResultsNotFoundException {
 		List<Test> results = recordRepository.findAllByUserAndDate(user, date);
