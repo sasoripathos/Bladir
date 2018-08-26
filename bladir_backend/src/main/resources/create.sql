@@ -34,7 +34,7 @@ CREATE TABLE `role` (
 DROP TABLE IF EXISTS `result`;
 CREATE TABLE `result` (
     `record_id` int(11) NOT NULL AUTO_INCREMENT,
-   `date` varchar(45) DEFAULT NULL,
+   `date` TIME DEFAULT NULL,
    `name` varchar(45) DEFAULT NULL,
    `test_name` varchar(45) DEFAULT NULL,
    `patient_id` int(11) DEFAULT NULL,
@@ -56,3 +56,22 @@ CREATE TABLE `standard` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+Insert into standard (value_name,low,high) values 
+('WBC',4.0,10.5);
+
+Insert into standard (value_name,low,high) values 
+('RBC',4.1,5.6);
+
+Insert into standard (value_name,low,high) values 
+('MCV',4.0,4.9);
+
+
+Insert into role (id,role_name) values 
+(1,'Doctor');
+
+Insert into role (id,role_name) values 
+(2,'Patient');
+
+Insert into role (id,role_name) values 
+(3,'Analyst');

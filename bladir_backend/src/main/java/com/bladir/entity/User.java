@@ -1,15 +1,7 @@
 package com.bladir.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -21,7 +13,7 @@ public class User {
 	@Column(name="id")
 	private int id;
 
-	@Column(name="username")
+	@Column(name="username", unique = true)
 	private String username;
 
 	@Column(name="password")
@@ -43,13 +35,19 @@ public class User {
 
 	@Column(name="email")
 	private String email;
-	
+
+	@OneToMany(mappedBy="user",
+			cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+					CascadeType.DETACH, CascadeType.REFRESH})
+	private List<Result> results;
+
+
 	public User() {
 		
 	}
 
 	public User(String username, String password, Role role, String firstName, String lastName, String gender,
-			String email) {
+				String email) {
 		this.username = username;
 		this.password = password;
 		this.role = role;
@@ -57,6 +55,14 @@ public class User {
 		this.lastName = lastName;
 		this.gender = gender;
 		this.email = email;
+	}
+
+	public List<Result> getResults() {
+		return results;
+	}
+
+	public void setResults(List<Result> results) {
+		this.results = results;
 	}
 
 	public int getId() {

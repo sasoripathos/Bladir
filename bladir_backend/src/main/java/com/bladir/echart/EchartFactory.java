@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bladir.config.EchartConfig;
-import com.bladir.database_service.UserService;
+import com.bladir.database_service.UserServiceImpl;
 import com.bladir.exception.InvalidDateException;
 
 @RestController
