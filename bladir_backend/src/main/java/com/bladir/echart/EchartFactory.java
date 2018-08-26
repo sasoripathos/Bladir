@@ -59,8 +59,8 @@ public class EchartFactory {
 			System.out.println("database: " + item.getDate());
 			System.out.println("input: " + date);
 			if(/*item.getDate().equals(date)*/compareDate(item.getDate(), date)) {
-				List<Record> records = item.getRecords();
-				return createBarChartResponse(records);
+				//List<Record> records = item.getRecords();
+				return createBarChartResponse(item);
 			}
 		}
 		throw new ResultsNotFoundException("No result available!");
@@ -90,7 +90,8 @@ public class EchartFactory {
 		return new Legend(a);
 	}
 	
-	private Dataset createBarChartResponse(List<Record> records) {
+	private Dataset createBarChartResponse(Test test) {
+		List<Record> records = test.getRecords();
 		// Get fixed legend
 		Legend legend = getBarChartLegend();
 		// create x axis value holder
@@ -113,7 +114,7 @@ public class EchartFactory {
 		
 		List<DataSeriesElement> dataSeries = new ArrayList<>();
 		dataSeries.add(lowerDataSeries); dataSeries.add(testDataSeries); dataSeries.add(upperDataSeries); 
-		return new Dataset(legend, xAxis, dataSeries);
+		return new Dataset(legend, xAxis, dataSeries, test.getTestcoment());
 	}
 	
 	
@@ -140,7 +141,7 @@ public class EchartFactory {
 		List<DataSeriesElement> dataSeries = new ArrayList<>();
 		dataSeries.add(element);
 		
-		return new Dataset(legend, xAxis, dataSeries);
+		return new Dataset(legend, xAxis, dataSeries, "sample comment");
 	}
 	
 	private Dataset getSampleBarChart() {
@@ -166,6 +167,6 @@ public class EchartFactory {
 		
 		List<DataSeriesElement> dataSeries = new ArrayList<>();
 		dataSeries.add(lowerDataSeries); dataSeries.add(mainDataSeries); dataSeries.add(upperDataSeries); 
-		return new Dataset(legend, xAxis, dataSeries);
+		return new Dataset(legend, xAxis, dataSeries, "sample comment");
 	}
 }
