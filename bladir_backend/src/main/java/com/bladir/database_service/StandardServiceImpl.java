@@ -8,7 +8,7 @@ public class StandardServiceImpl implements StandardService {
     public Standard getStandardByName(String name) {
         Standard standard = null;
         try {
-            standard = standardRepository.findByValue_name(name);
+            standard = standardRepository.findByValuename(name);
         } catch (Exception ex){
             System.err.println("Can't find standard by name");
         }

@@ -9,7 +9,7 @@ public class Standard {
 
     @Id
     @Column(name="value_name")
-    private String value_name;
+    private String valuename;
 
     @Column(name="low")
     private double low;
@@ -27,12 +27,12 @@ public class Standard {
 
     }
 
-    public String getValue_name() {
-        return value_name;
+    public String getValuename() {
+        return valuename;
     }
 
-    public void setValue_name(String value_name) {
-        this.value_name = value_name;
+    public void setValuename(String valuename) {
+        this.valuename = valuename;
     }
 
     public double getLow() {
@@ -54,7 +54,7 @@ public class Standard {
     public Standard(double low, double high, String value_name) {
         this.low = low;
         this.high = high;
-        this.value_name = value_name;
+        this.valuename = value_name;
     }
 
 
