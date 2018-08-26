@@ -64,7 +64,7 @@ public class EchartFactory {
 		MarkLineSet markLineSet = null;
 		
 		String comment = "sample comment";
-		for(int i=0;i< Math.min(times,tests.size());i++) {
+		for(int i = Math.min(times,tests.size()); i>=0 ;i--) {
 			Test item = tests.get(i);
 			xAxis.add(dateFormater(item.getDate()));
 			Record record = recordService.findRecordByTestAndStandard(item, standardService.getStandardByName(value));
