@@ -16,20 +16,32 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public int addDoctor(User doctor) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			userRepository.save(doctor);
+		} catch (Exception ex){
+			System.err.println("Can't save doctor");
+		}
+		return doctor.getId();
 	}
 
 	@Override
 	public int addPatient(User patient) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			userRepository.save(patient);
+		} catch (Exception ex){
+			System.err.println("Can't save patient");
+		}
+		return patient.getId();
 	}
 
 	@Override
 	public int addAnalyst(User analyst) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			userRepository.save(analyst);
+		} catch (Exception ex){
+			System.err.println("Can't save analyst");
+		}
+		return analyst.getId();
 	}
 
 	@Override
@@ -40,8 +52,13 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User findUserByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = null;
+		try {
+			user = userRepository.findByUsername(username);
+		} catch (Exception ex){
+			System.err.println("Can't find User by user name");
+		}
+		return user;
 	}
 	
 	/*public void createUser() {

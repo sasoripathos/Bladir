@@ -1,5 +1,7 @@
 package com.bladir.database_service;
 
-public interface StandardService{
+import com.bladir.entity.Standard;
 
+public interface StandardService{
+    public Standard getStandardByName(String name);
 }
