@@ -9,15 +9,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ResultServiceImpl implements ResultService {
+public class RecordServiceImpl implements RecordService {
 
 	@Autowired
-	private ResultRepository resultRepository;
+	private RecordRepository recordRepository;
 	
 	@Override
-	public int addResult(Record result) {
+	public int addRecord(Record result) {
 		try {
-			resultRepository.save(result);
+			recordRepository.save(result);
 		} catch (Exception ex) {
 			System.err.println("Can't find result");
 		}
@@ -26,10 +26,10 @@ public class ResultServiceImpl implements ResultService {
 
 	@Override
 	public List<Record> findAllByUserAndDate(User user, Date date) throws ResultsNotFoundException {
-		List<Record> results = resultRepository.findAllByUserAndDate(user, date);
+		List<Record> results = recordRepository.findAllByUserAndDate(user, date);
 		if (results == null || results.size() == 0) {
 			throw new ResultsNotFoundException("No result available for given user and date");
 		}
-		return resultRepository.findAllByUserAndDate(user, date);
+		return recordRepository.findAllByUserAndDate(user, date);
 	}
 }

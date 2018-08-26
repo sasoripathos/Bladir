@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bladir.config.EchartConfig;
-import com.bladir.database_service.ResultService;
+import com.bladir.database_service.RecordService;
 import com.bladir.database_service.UserService;
 import com.bladir.database_service.UserServiceImpl;
 import com.bladir.entity.Record;
@@ -34,7 +34,7 @@ public class EchartFactory {
 	private UserService userService;
 	
 	@Autowired
-	private ResultService resultService;
+	private RecordService resultService;
 	
 	@GetMapping("linechart/{username}")
 	@CrossOrigin("*")

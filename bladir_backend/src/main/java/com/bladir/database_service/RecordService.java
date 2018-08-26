@@ -7,7 +7,7 @@ import com.bladir.entity.Record;
 import com.bladir.entity.User;
 import com.bladir.exception.ResultsNotFoundException;
 
-public interface ResultService {
-	public int addResult(Record result);
+public interface RecordService {
+	public int addRecord(Record result);
 	public List<Record> findAllByUserAndDate(User user, Date date) throws ResultsNotFoundException;
 }
