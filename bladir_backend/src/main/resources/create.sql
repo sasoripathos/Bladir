@@ -67,11 +67,17 @@ Insert into standard (value_name,low,high) values
 ('MCV',4.0,4.9);
 
 
-Insert into role (id,role_name) values 
-(1,'Doctor');
+Insert into role (role_name) values 
+('Doctor');
 
-Insert into role (id,role_name) values 
-(2,'Patient');
+Insert into role (role_name) values 
+('Patient');
 
-Insert into role (id,role_name) values 
-(3,'Analyst');
+Insert into role (role_name) values 
+('Analyst');
+
+Insert into user (username, firstname, lastname, password, email, gender, role_id) values
+('AriJames', 'Ari', 'James', '12345', 'patient@email.com', 'male', 2);
+
+Insert into user (username, firstname, lastname, password, email, gender, role_id) values
+('JeanAlen', 'Jean', 'Alen', '12345', 'doctor@email.com', 'female', 1);
