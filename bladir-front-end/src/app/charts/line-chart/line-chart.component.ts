@@ -27,6 +27,7 @@ export class LineChartComponent implements OnInit {
   }
 
   onSubmit(value, times) {
+    this.dataLoaded = true;
     this.httpService.getLineChart(value, times)
       .subscribe((response: Response) => {
         this.chartOption = {
@@ -80,8 +81,4 @@ export class LineChartComponent implements OnInit {
       });
   }
 
-  getData(type: string, times: string) {
-    this.dataLoaded = true;
-    console.log(type);
-  }
 }
