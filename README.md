@@ -42,3 +42,7 @@ Deployment the website: ng build --aot
 ## Authors
 
 See the list of [contributors](https://github.com/sasoripathos/Bladir/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 LICENSE- see the [LICENSE](LICENSE) file for details
