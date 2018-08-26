@@ -95,8 +95,14 @@ Insert into user (username, firstname, lastname, password, email, gender, role_i
 Insert into user (username, firstname, lastname, password, email, gender, role_id) values
 ('JeanAlen', 'Jean', 'Alen', '12345', 'doctor@email.com', 'female', 1);
 
-Insert into test (test_comment, patient_id) values
-('You are well',1);
+Insert into test (date, test_comment, patient_id) values
+('2018-06-22', 'test 1 comment',1);
+
+Insert into test (date, test_comment, patient_id) values
+('2018-06-25','test 2 comment',1);
+
+Insert into test (date, test_comment, patient_id) values
+('2018-07-01', 'test 3 comment',1);
 
 Insert into record (value_name, value, test_id, record_comment) values
 ('WBC',11.2, 1,'FEI YAN');
@@ -106,3 +112,21 @@ Insert into record (value_name, value, test_id, record_comment) values
 
 Insert into record (value_name, value, test_id, record_comment) values
 ('MCV',4.5, 1,'NORMAL');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('WBC',10.9, 2,'slightly higher');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('RBC',4.7, 2,'test 2 good');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('MCV',4.8, 2,'test 2 good');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('WBC',8.4, 3,'return normal');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('RBC',4.2, 3,'test 3 good');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('MCV',4.5, 3,'test 2 good');

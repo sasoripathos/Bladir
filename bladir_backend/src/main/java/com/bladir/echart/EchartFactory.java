@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Min;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bladir.config.EchartConfig;
 import com.bladir.database_service.RecordService;
+import com.bladir.database_service.StandardService;
+import com.bladir.database_service.TestService;
 import com.bladir.database_service.UserService;
 import com.bladir.database_service.UserServiceImpl;
 import com.bladir.entity.Record;
@@ -25,6 +29,7 @@ import com.bladir.entity.User;
 import com.bladir.exception.InvalidDateException;
 import com.bladir.exception.ResultsNotFoundException;
 import com.bladir.exception.UserNotFoundException;
+import com.mysql.cj.xdevapi.Result;
 
 @RestController
 @RequestMapping("/echart")
@@ -38,12 +43,62 @@ public class EchartFactory {
 	@Autowired
 	private RecordService recordService;
 	
+	@Autowired
+	private TestService testService;
+	
+	@Autowired
+	private StandardService standardService;
+	
 	@GetMapping("linechart/{username}")
 	@CrossOrigin("*")
-	public Dataset getLineChart(@PathVariable String username, @RequestParam("value") String value, @RequestParam("times") int times) throws InvalidDateException {
-		//TODO: db related 
-		//userService.queryUser();
-		return getSampleLineChart(value);
+	public Dataset getLineChart(@PathVariable String username, @RequestParam("value") String value, @RequestParam("times") @Min(1) int times)
+			throws UserNotFoundException, ResultsNotFoundException {
+		User user = userService.findUserByUsername(username);
+		List<Test> tests = testService.getSortedTestByUser(user);
+		Legend legend = getLineChartLegend(value);
+		// create x axis value holder
+		List<String> xAxis = new ArrayList<>();
+		// main data
+		List<Number> data = new ArrayList<>();
+		// MarkLineSet
+		MarkLineSet markLineSet = null;
+		
+		String comment = "sample comment";
+		for(int i=0;i< Math.min(times,tests.size());i++) {
+			Test item = tests.get(i);
+			xAxis.add(dateFormater(item.getDate()));
+			Record record = recordService.findRecordByTestAndStandard(item, standardService.getStandardByName(value));
+			data.add(record.getValue());
+			if(i==0) {
+				markLineSet = getMarkLineSet(record.getStandard().getHigh(), record.getStandard().getLow());
+				comment = record.getComment();
+			}
+		}
+		DataSeriesElement element = new LineChartSeriesElement(value + " Trend", "line", data, markLineSet);
+		List<DataSeriesElement> dataSeries = new ArrayList<>();
+		dataSeries.add(element);
+		
+		return new Dataset(legend, xAxis, dataSeries, "sample comment");
+		//return getSampleLineChart(value);
+	}
+	
+	private MarkLineSet getMarkLineSet(double high, double low) {
+		BoundLine upperbound = new BoundLine(high, "upper bound");
+		BoundLine lowerbound = new BoundLine(low, "lower bound");
+		List<BoundLine> lineset = new ArrayList<BoundLine> ();
+		lineset.add(upperbound); lineset.add(lowerbound);
+		return new MarkLineSet(lineset);
+	}
+	
+	private Legend getLineChartLegend(String value) {
+		List<String> a = new ArrayList<>();
+		a.add(value + " Trend");
+		return new Legend(a);
+	}
+	
+	private String dateFormater(Date date) {
+		SimpleDateFormat format = new SimpleDateFormat(config.getDateFormat());
+		return format.format(date);
 	}
 	
 	@GetMapping("barchart/{username}")
