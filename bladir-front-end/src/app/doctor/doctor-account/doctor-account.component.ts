@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../user';
 
 @Component({
   selector: 'app-doctor-account',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorAccountComponent implements OnInit {
 
-  constructor() { }
+  user = new User(1234, 'admin', 'admin', 'admin', 'admin@doctor.ca', 'Female', 2);
+  block = true;
+
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  onClicl() {
+    this.block = !this.block;
   }
 
 }

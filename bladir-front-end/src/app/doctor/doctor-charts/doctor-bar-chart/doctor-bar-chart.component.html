@@ -1,0 +1,34 @@
+<div class="ui fluid input">
+  <!--<input type="text" placeholder="Search a very wide input..." (click)="changeDate($event)">-->
+
+  <input #textbox id="data" type="text" required placeholder="Enter the date you want to ask here!">
+  <button (click)="changeDate(textbox.value)">
+    <i class="search icon"></i>
+  </button>
+  <!--<button (click)="textValue=''">Clear</button>-->
+</div>
+
+<div *ngIf="this.graphLoaded">
+  <div echarts [options]="option" class="demo-chart" (chartInit)="onChartInit($event)"></div>
+
+  <div class="ui grid">
+    <div class="four wide column"></div>
+    <div class="ten wide column">
+      <div class="ui comments">
+        <div class="comment">
+          <div class="content">
+            <form class="ui reply form">
+              <div class="field">
+                <textarea>{{comments}}</textarea>
+              </div>
+              <div class="ui primary submit labeled icon right floated button" (click)="onClick()">
+                <i class="icon edit"></i> Add Comments
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="two wide column"></div>
+  </div>
+</div>

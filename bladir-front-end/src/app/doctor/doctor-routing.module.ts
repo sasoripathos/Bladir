@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {DoctorAggregateDataComponent} from './doctor-aggregate-data/doctor-aggregate-data.component';
 import {DoctorTrendDataComponent} from './doctor-trend-data/doctor-trend-data.component';

@@ -1,22 +1,22 @@
-<!--<div class="shadow-menu">-->
-  <!--<div class="ui secondary pointing menu"-->
-       <!--style="height: 55px">-->
-    <!--<a class="item" routerLink="aggregate-data" [ngClass]="{'active': aggregateActive}" (click)="activateAggregate()">-->
-      <!--Aggregate Data-->
-    <!--</a>-->
-    <!--<a class="item" routerLink="trend-data" [ngClass]="{'active': trendActive}" (click)="activateTrend()">-->
-      <!--Trend Data-->
-    <!--</a>-->
-    <!--<div class="right menu">-->
-      <!--<div class="item">-->
-        <!--<a routerLink="account" (click)="deactivate()">-->
-          <!--<i class="ui icon user"></i>-->
-        <!--</a>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<a class="item" routerLink="/">-->
-      <!--Logout-->
-    <!--</a>-->
-  <!--</div>-->
-<!--</div>-->
+<div class="shadow-menu">
+  <div class="ui secondary pointing menu"
+       style="height: 55px">
+    <a class="item" routerLink="doctor-aggregate-data" [ngClass]="{'active': aggregateActive}" (click)="activateAggregate()">
+      Aggregate Data
+    </a>
+    <a class="item" routerLink="doctor-trend-data" [ngClass]="{'active': trendActive}" (click)="activateTrend()">
+      Trend Data
+    </a>
+    <div class="right menu">
+      <div class="item">
+        <a routerLink="doctor-account" (click)="deactivate()">
+          <i class="ui icon user"></i>
+        </a>
+      </div>
+    </div>
+    <a class="item" routerLink="/">
+      Logout
+    </a>
+  </div>
+</div>
 <router-outlet></router-outlet>
