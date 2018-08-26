@@ -68,11 +68,7 @@ export class DoctorChartsComponent implements OnInit {
                   {type: 'min', name: 'min'}
                 ]
               },
-              markLine: {
-                data: [
-                  {type: 'average', name: 'average'}
-                ]
-              }
+              markLine: response['series'][0]['markLine']
             }
           ]
         };
