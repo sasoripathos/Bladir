@@ -20,7 +20,6 @@ export class LineChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onSubmit('WBC', '5');
   }
 
   onChartInit(ec) {
@@ -76,7 +75,7 @@ export class LineChartComponent implements OnInit {
             }
           ]
         };
-        this.comments = response['comments'];
+        this.comments = response['comment'];
         console.log(this.chartOption);
       });
   }

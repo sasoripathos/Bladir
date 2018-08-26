@@ -251,7 +251,6 @@ export class BarChartComponent implements OnInit {
           // console.log(response['series']);
           // // console.log(response.series);
           // console.log(this.option['seires'][0]['data']);
-          this.comments = response['comments'];
           console.log(this.option);
           // this.updateData()
         },
@@ -352,6 +351,7 @@ export class BarChartComponent implements OnInit {
             ],
             series: response['series']
           };
+          this.comments = response['comment'];
           console.log(this.option);
           // this.updateData()
         },
