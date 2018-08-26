@@ -11,6 +11,7 @@ export class BarChartComponent implements OnInit {
 
   echartsIntance: any;
   barData;
+  graphLoaded = false;
 
 
   posList = [
@@ -302,5 +303,61 @@ export class BarChartComponent implements OnInit {
     };
 
     this.option = new_option;
+  }
+
+  changeDate(date: string) {
+    this.graphLoaded = true;
+    this.httpService.getBarChart(date)
+      .subscribe(
+      (response: Response) => {
+        console.log(response);
+        this.option = {
+          color: ['#003366', '#006699', '#e5323e'],
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
+          },
+          legend: {
+            data: response['legend']['data']
+            // 'data': ['Lower Bound', 'Test Value', 'Upper Bound']
+          },
+          toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+              mark: {show: true},
+              dataView: {show: true, readOnly: false},
+              magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+              restore: {show: true},
+              saveAsImage: {show: true}
+            }
+          },
+          calculable: true,
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {show: false},
+              data: response['xAxisData']
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value'
+            }
+          ],
+          series: response['series']
+        };
+        console.log(this.option);
+        // this.updateData()
+
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }

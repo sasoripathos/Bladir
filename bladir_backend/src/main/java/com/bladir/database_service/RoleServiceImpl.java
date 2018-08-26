@@ -6,8 +6,7 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public Role getRoleByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+
 	}
 
 }
