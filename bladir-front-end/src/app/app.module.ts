@@ -8,6 +8,7 @@ import {PatientModule} from './patient/patient.module';
 import {NgxEchartsModule} from 'ngx-echarts';
 import { RegisterComponent } from './register/register.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DoctorModule} from './doctor/doctor.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     NgxEchartsModule,
     PatientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DoctorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

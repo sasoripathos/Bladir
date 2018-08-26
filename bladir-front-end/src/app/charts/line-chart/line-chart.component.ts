@@ -10,8 +10,8 @@ import {HttpService} from '../../services/http.service';
 })
 export class LineChartComponent implements OnInit {
   echartsIntance: any;
-
   chartOption: EChartOption;
+  dataLoaded = false;
 
   constructor(
     private httpService: HttpService
@@ -77,5 +77,10 @@ export class LineChartComponent implements OnInit {
         };
         console.log(this.chartOption);
       });
+  }
+
+  getData(type: string, times: string) {
+    this.dataLoaded = true;
+    console.log(type);
   }
 }

@@ -1,1 +1,22 @@
-<div echarts [options]="chartOption" class="demo-chart" (chartInit)="onChartInit($event)"></div>
+<div class="ui grid">
+  <div class="eight wide column">
+    <div class="ui fluid input" style="padding-right: 0rem;">
+      <input #type type="text" required placeholder="Enter the type of data you want!">
+    </div>
+  </div>
+  <div class="eight wide column">
+    <div class="ui fluid input" style="padding-left: 0rem;">
+      <input #times type="text" required placeholder="Enter the number of test results you want to see here!">
+    </div>
+  </div>
+</div>
+<div style="clear:both; margin-top: 1rem; margin-bottom: 1rem;">
+  <button class="ui right floated button" (click)="getData(type.value, times.value)">
+    Search
+  </button>
+</div>
+
+<div *ngIf="this.dataLoaded" style="clear: both;">
+  <div echarts [options]="chartOption" class="demo-chart" (chartInit)="onChartInit($event)"></div>
+</div>
+
