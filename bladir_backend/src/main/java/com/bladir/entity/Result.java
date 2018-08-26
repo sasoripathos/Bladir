@@ -93,5 +93,11 @@ public class Result {
 	public void setStandard(Standard standard) {
 		this.standard = standard;
 	}
+	
+	@Override
+	public String toString() {
+		return "Result [id=" + id + ", date=" + date + ", name=" + name + ", value=" + value + ", user=" + user
+				+ ", standard=" + standard + "]";
+	}
 
 }

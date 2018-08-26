@@ -15,8 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bladir.config.EchartConfig;
+import com.bladir.database_service.ResultService;
+import com.bladir.database_service.UserService;
 import com.bladir.database_service.UserServiceImpl;
+import com.bladir.entity.Result;
+import com.bladir.entity.User;
 import com.bladir.exception.InvalidDateException;
+import com.bladir.exception.ResultsNotFoundException;
+import com.bladir.exception.UserNotFoundException;
 
 @RestController
 @RequestMapping("/echart")
@@ -24,8 +30,11 @@ public class EchartFactory {
 	@Autowired
 	private EchartConfig config;
 	
-	/*@Autowired
-	private UserService userService;*/
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private ResultService resultService;
 	
 	@GetMapping("linechart/{username}")
 	@CrossOrigin("*")
@@ -37,7 +46,8 @@ public class EchartFactory {
 	
 	@GetMapping("barchart/{username}")
 	@CrossOrigin("*")
-	public Dataset getBarChart(@PathVariable String username, @RequestParam("date") String datestring) throws InvalidDateException {
+	public Dataset getBarChart(@PathVariable String username, @RequestParam("date") String datestring)
+			throws InvalidDateException, UserNotFoundException, ResultsNotFoundException {
 		/*try {
 			userService.createUser();
 			System.out.println("success");
@@ -46,6 +56,8 @@ public class EchartFactory {
 			System.out.println("fail");
 		}*/
 		Date date = parseInputDate(datestring);
+		User user = userService.findUserByUsername(username);
+		List<Result> results = resultService.findAllByUserAndDate(user, date);
 		
 		return getSampleBarChart();
 	}

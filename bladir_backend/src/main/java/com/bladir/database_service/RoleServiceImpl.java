@@ -1,6 +1,12 @@
 package com.bladir.database_service;
 
+import com.bladir.entity.Result;
 import com.bladir.entity.Role;
+import com.bladir.entity.User;
+
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class RoleServiceImpl implements RoleService {

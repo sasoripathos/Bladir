@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bladir.entity.Role;
 import com.bladir.entity.User;
+import com.bladir.exception.UserNotFoundException;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -51,14 +52,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User findUserByUsername(String username) {
-		User user = null;
-		try {
-			user = userRepository.findByUsername(username);
-		} catch (Exception ex){
-			System.err.println("Can't find User by user name");
+	public User findUserByUsername(String username) throws UserNotFoundException {
+		User user = userRepository.findByUsername(username);
+		if (user == null) {
+			throw(new UserNotFoundException("Invalid Username: " + username));
+		} else {
+			return user;
 		}
-		return user;
 	}
 	
 	/*public void createUser() {
