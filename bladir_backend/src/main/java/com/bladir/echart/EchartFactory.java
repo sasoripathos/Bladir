@@ -18,7 +18,7 @@ import com.bladir.config.EchartConfig;
 import com.bladir.database_service.ResultService;
 import com.bladir.database_service.UserService;
 import com.bladir.database_service.UserServiceImpl;
-import com.bladir.entity.Result;
+import com.bladir.entity.Record;
 import com.bladir.entity.User;
 import com.bladir.exception.InvalidDateException;
 import com.bladir.exception.ResultsNotFoundException;
@@ -57,7 +57,7 @@ public class EchartFactory {
 		}*/
 		Date date = parseInputDate(datestring);
 		User user = userService.findUserByUsername(username);
-		List<Result> results = resultService.findAllByUserAndDate(user, date);
+		List<Record> results = resultService.findAllByUserAndDate(user, date);
 		
 		return getSampleBarChart();
 	}

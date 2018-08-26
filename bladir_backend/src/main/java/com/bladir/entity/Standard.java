@@ -20,7 +20,7 @@ public class Standard {
     @OneToMany(mappedBy="standard",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
-    private List<Result> results;
+    private List<Record> results;
 
 
     public Standard() {

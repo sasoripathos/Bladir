@@ -1,6 +1,6 @@
 package com.bladir.database_service;
 
-import com.bladir.entity.Result;
+import com.bladir.entity.Record;
 import com.bladir.entity.User;
 import com.bladir.exception.ResultsNotFoundException;
 
@@ -15,7 +15,7 @@ public class ResultServiceImpl implements ResultService {
 	private ResultRepository resultRepository;
 	
 	@Override
-	public int addResult(Result result) {
+	public int addResult(Record result) {
 		try {
 			resultRepository.save(result);
 		} catch (Exception ex) {
@@ -25,8 +25,8 @@ public class ResultServiceImpl implements ResultService {
 	}
 
 	@Override
-	public List<Result> findAllByUserAndDate(User user, Date date) throws ResultsNotFoundException {
-		List<Result> results = resultRepository.findAllByUserAndDate(user, date);
+	public List<Record> findAllByUserAndDate(User user, Date date) throws ResultsNotFoundException {
+		List<Record> results = resultRepository.findAllByUserAndDate(user, date);
 		if (results == null || results.size() == 0) {
 			throw new ResultsNotFoundException("No result available for given user and date");
 		}

@@ -1,6 +1,6 @@
 package com.bladir.database_service;
 
-import com.bladir.entity.Result;
+import com.bladir.entity.Record;
 import com.bladir.entity.Role;
 import com.bladir.entity.User;
 
