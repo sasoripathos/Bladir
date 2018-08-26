@@ -38,7 +38,7 @@ CREATE TABLE `record` (
    `value_name` varchar(45) DEFAULT NULL,
     `value` NUMERIC(8, 3) DEFAULT NULL,
    `test_id` int(11) DEFAULT NULL,
-   `record_comment` varchar(45) DEFAULT 'NO COMMNET',
+   `record_comment` varchar(255) DEFAULT 'NO COMMNET',
    PRIMARY KEY ( `record_id`),
     KEY `FK_TEST_idx` (`test_id`),
     CONSTRAINT `FK_TEST` FOREIGN KEY (`test_id`) 
@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
    `date` date DEFAULT '2018-07-01',
-   `test_comment` varchar(45) DEFAULT 'NO COMMNET',
+   `test_comment` varchar(255) DEFAULT 'NO COMMNET',
    `patient_id` int(11) DEFAULT NULL,
    PRIMARY KEY ( `id`),
     KEY `FK_USER_idx` (`patient_id`),
@@ -96,37 +96,61 @@ Insert into user (username, firstname, lastname, password, email, gender, role_i
 ('JeanAlen', 'Jean', 'Alen', '12345', 'doctor@email.com', 'female', 1);
 
 Insert into test (date, test_comment, patient_id) values
-('2018-06-22', 'test 1 comment',1);
+('2018-06-22', 'WBC is slightly higher than reference upper bound, patient may have some inflammation',1);
 
 Insert into test (date, test_comment, patient_id) values
-('2018-06-25','test 2 comment',1);
+('2018-06-25','WBC is much higher than reference upper bound. According to the symptoms, patient can be diagnosed as Pneumonia',1);
 
 Insert into test (date, test_comment, patient_id) values
-('2018-07-01', 'test 3 comment',1);
+('2018-07-01', 'WBC is still higher than reference upper bound, but it shows that Pneumonia is under control',1);
+
+Insert into test (date, test_comment, patient_id) values
+('2018-07-05', 'WBC is slightly higher than reference upper bound. Pneumonia is neally cured. RBC and MCV are less than there reference lower bound, patient has a little anemia',1);
+
+Insert into test (date, test_comment, patient_id) values
+('2018-07-10', 'All WBC, RBC and MCV are back to reference interval, pneumonia and anemia are cured',1);
 
 Insert into record (value_name, value, test_id, record_comment) values
-('WBC',11.2, 1,'FEI YAN');
+('WBC',11.2, 1,'Potential inflammation');
 
 Insert into record (value_name, value, test_id, record_comment) values
-('RBC',5.2, 1,'NORMAL');
+('RBC',5.2, 1,'In health state');
 
 Insert into record (value_name, value, test_id, record_comment) values
-('MCV',4.5, 1,'NORMAL');
+('MCV',4.5, 1,'In health state');
 
 Insert into record (value_name, value, test_id, record_comment) values
-('WBC',10.9, 2,'slightly higher');
+('WBC',13.7, 2,'Can be diagnosed as pneumonia');
 
 Insert into record (value_name, value, test_id, record_comment) values
-('RBC',4.7, 2,'test 2 good');
+('RBC',4.7, 2,'In health state');
 
 Insert into record (value_name, value, test_id, record_comment) values
-('MCV',4.8, 2,'test 2 good');
+('MCV',4.8, 2,'In health state');
 
 Insert into record (value_name, value, test_id, record_comment) values
-('WBC',8.4, 3,'return normal');
+('WBC',12.9, 3,'Pneumonia is under control after treatment');
 
 Insert into record (value_name, value, test_id, record_comment) values
-('RBC',4.2, 3,'test 3 good');
+('RBC',4.2, 3,'In health state');
 
 Insert into record (value_name, value, test_id, record_comment) values
-('MCV',4.5, 3,'test 2 good');
+('MCV',4.5, 3,'In health state');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('WBC',10.7, 4,'Pneumonia is nearly cured');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('RBC',3.8, 4,'Sightly anemia');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('MCV',3.9, 4,'Sightly anemia');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('WBC',7.3, 5, 'You have be back to health state');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('RBC',4.5, 5,'You have be back to health state');
+
+Insert into record (value_name, value, test_id, record_comment) values
+('MCV',4.2, 5,'In health state');
