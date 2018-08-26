@@ -307,6 +307,7 @@ export class BarChartComponent implements OnInit {
 
   changeDate(date: string) {
     this.graphLoaded = true;
+
     this.httpService.getBarChart(date)
       .subscribe(
       (response: Response) => {
