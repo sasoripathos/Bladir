@@ -1,7 +1,8 @@
 package com.bladir.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,10 @@ public class Test {
     @JoinColumn(name="patient_id")
     private User user;
 
+    public Test() {
+    	
+    }
+    
     public Test(Date date, String testcoment, List<Record> records, User user) {
         this.date = date;
         this.testcoment = testcoment;

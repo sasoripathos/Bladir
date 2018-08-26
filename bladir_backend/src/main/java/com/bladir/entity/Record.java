@@ -81,5 +81,11 @@ public class Record {
 		this.test = test;
 	}
 
+	@Override
+	public String toString() {
+		return "Record [id=" + id + ", standard=" + standard + ", value=" + value + ", comment=" + comment + ", test="
+				+ test + "]";
+	}
+
 
 }

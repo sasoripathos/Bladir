@@ -95,8 +95,8 @@ Insert into user (username, firstname, lastname, password, email, gender, role_i
 Insert into user (username, firstname, lastname, password, email, gender, role_id) values
 ('JeanAlen', 'Jean', 'Alen', '12345', 'doctor@email.com', 'female', 1);
 
-Insert into test (date, test_comment, patient_id) values
-(CURRENT_DATE - INTERVAL 1 YEAR, 'You are well',1);
+Insert into test (test_comment, patient_id) values
+('You are well',1);
 
 Insert into record (value_name, value, test_id, record_comment) values
 ('WBC',11.2, 1,'FEI YAN');

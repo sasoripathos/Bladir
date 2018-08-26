@@ -7,7 +7,12 @@ import java.util.List;
 @Table(name="standard")
 public class Standard {
 
-    @Id
+    @Override
+	public String toString() {
+		return "Standard [valuename=" + valuename + ", low=" + low + ", high=" + high + ", results=" + results + "]";
+	}
+
+	@Id
     @Column(name="value_name")
     private String valuename;
 

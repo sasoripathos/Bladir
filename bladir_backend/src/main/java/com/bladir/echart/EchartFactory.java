@@ -51,9 +51,13 @@ public class EchartFactory {
 	public Dataset getBarChart(@PathVariable String username, @RequestParam("date") String datestring)
 			throws InvalidDateException, UserNotFoundException, ResultsNotFoundException {
 		Date date = parseInputDate(datestring);
+		System.out.println(date);
 		User user = userService.findUserByUsername(username);
 		List<Test> allTests = user.getTests();
+		System.out.println(allTests.size());
 		for(Test item : allTests) {
+			System.out.println("database: " + item.getDate());
+			System.out.println("input: " + date);
 			if(item.getDate().equals(date)) {
 				List<Record> records = item.getRecords();
 				return createBarChartResponse(records);
