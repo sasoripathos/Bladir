@@ -2,7 +2,8 @@
   <!--<input type="text" placeholder="Search a very wide input..." (click)="changeDate($event)">-->
 
   <input #textbox id="data" type="text" required placeholder="Enter the date you want to ask here!">
-  <button (click)="changeDate(textbox.value)">
+  <input #user id="username" type="text" required placeholder="Enter the username you want to see here!">
+  <button class="ui button" (click)="changeDate(textbox.value, user.value)">
     <i class="search icon"></i>
   </button>
   <!--<button (click)="textValue=''">Clear</button>-->

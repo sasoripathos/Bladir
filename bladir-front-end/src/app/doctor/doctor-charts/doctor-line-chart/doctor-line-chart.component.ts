@@ -11,6 +11,7 @@ export class DoctorChartsComponent implements OnInit {
   echartsIntance: any;
 
   chartOption: EChartOption;
+  dataLoaded = false;
 
   constructor(
     private httpService: HttpService
@@ -26,6 +27,7 @@ export class DoctorChartsComponent implements OnInit {
   }
 
   onSubmit(value, times) {
+    this.dataLoaded = true;
     this.httpService.getLineChart(value, times)
       .subscribe((response: Response) => {
         this.chartOption = {

@@ -304,7 +304,7 @@ export class DoctorBarChartComponent implements OnInit {
     this.option = new_option;
   }
 
-  changeDate(date: string) {
+  changeDate(date: string, user_name: string) {
     this.graphLoaded = true;
 
     this.httpService.getBarChart(date)
