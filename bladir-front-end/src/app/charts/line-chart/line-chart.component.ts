@@ -12,6 +12,7 @@ export class LineChartComponent implements OnInit {
   echartsIntance: any;
   chartOption: EChartOption;
   dataLoaded = false;
+  comments: string;
 
   constructor(
     private httpService: HttpService
@@ -75,6 +76,7 @@ export class LineChartComponent implements OnInit {
             }
           ]
         };
+        this.comments = response['comments'];
         console.log(this.chartOption);
       });
   }

@@ -12,6 +12,7 @@ export class BarChartComponent implements OnInit {
   echartsIntance: any;
   barData;
   graphLoaded = false;
+  comments: string;
 
 
   posList = [
@@ -250,6 +251,7 @@ export class BarChartComponent implements OnInit {
           // console.log(response['series']);
           // // console.log(response.series);
           // console.log(this.option['seires'][0]['data']);
+          this.comments = response['comments'];
           console.log(this.option);
           // this.updateData()
         },
