@@ -39,7 +39,7 @@ public class User {
 	@OneToMany(mappedBy="user",
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 					CascadeType.DETACH, CascadeType.REFRESH})
-	private List<Record> results;
+	private List<Test> tests;
 
 
 	public User() {
@@ -57,12 +57,14 @@ public class User {
 		this.email = email;
 	}
 
-	public List<Record> getResults() {
-		return results;
+
+
+	public List<Test> getTests() {
+		return tests;
 	}
 
-	public void setResults(List<Record> results) {
-		this.results = results;
+	public void setTests(List<Test> tests) {
+		this.tests = tests;
 	}
 
 	public int getId() {

@@ -2,7 +2,9 @@ package com.bladir.database_service;
 
 import com.bladir.entity.Standard;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StandardServiceImpl implements StandardService {
 
     public Standard getStandardByName(String name) {

@@ -45,11 +45,11 @@ public class UserServiceImpl implements UserService{
 		return analyst.getId();
 	}
 
-	@Override
+	/*@Override
 	public boolean authentication(String username, String passward, String role) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}*/
 
 	@Override
 	public User findUserByUsername(String username) throws UserNotFoundException {
