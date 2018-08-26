@@ -11,3 +11,20 @@
 <div *ngIf="this.graphLoaded">
   <div echarts [options]="option" class="demo-chart" (chartInit)="onChartInit($event)"></div>
 </div>
+
+<div *ngIf="comments">
+  <div class="ui grid">
+    <div class="six wide column"></div>
+    <div class="six wide column">
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Doctor Notes</div>
+          <div class="description">
+            <p>{{comments}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="five wide column"></div>
+  </div>
+</div>

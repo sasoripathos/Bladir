@@ -12,6 +12,7 @@ export class LineChartComponent implements OnInit {
   echartsIntance: any;
   chartOption: EChartOption;
   dataLoaded = false;
+  comments: string;
 
   constructor(
     private httpService: HttpService
@@ -19,7 +20,6 @@ export class LineChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onSubmit('WBC', '5');
   }
 
   onChartInit(ec) {
@@ -27,6 +27,7 @@ export class LineChartComponent implements OnInit {
   }
 
   onSubmit(value, times) {
+    this.dataLoaded = true;
     this.httpService.getLineChart(value, times)
       .subscribe((response: Response) => {
         this.chartOption = {
@@ -75,12 +76,9 @@ export class LineChartComponent implements OnInit {
             }
           ]
         };
+        this.comments = response['comment'];
         console.log(this.chartOption);
       });
   }
 
-  getData(type: string, times: string) {
-    this.dataLoaded = true;
-    console.log(type);
-  }
 }

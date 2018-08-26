@@ -11,12 +11,29 @@
   </div>
 </div>
 <div style="clear:both; margin-top: 1rem; margin-bottom: 1rem;">
-  <button class="ui right floated button" (click)="getData(type.value, times.value)">
+  <button class="ui right floated button" (click)="onSubmit(type.value, times.value)">
     Search
   </button>
 </div>
 
 <div *ngIf="this.dataLoaded" style="clear: both;">
   <div echarts [options]="chartOption" class="demo-chart" (chartInit)="onChartInit($event)"></div>
+</div>
+
+<div *ngIf="comments">
+  <div class="ui grid">
+    <div class="six wide column"></div>
+    <div class="six wide column">
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Doctor Notes</div>
+          <div class="description">
+            <p>{{comments}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="five wide column"></div>
+  </div>
 </div>
 
