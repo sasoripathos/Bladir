@@ -1,6 +1,6 @@
 # Bladir
 
-Hack the 6ix 2018 Project
+Bladir means "Blood Analysis, Diagnosis, Results". It is a cloud platform which connects blood analyst, doctor and patient, speed up the result delivery, data visualization and data analysis.
 
 
 ## Getting Started
