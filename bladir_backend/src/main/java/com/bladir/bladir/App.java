@@ -1,5 +1,9 @@
 package com.bladir.bladir;
 
+import java.util.TimeZone;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,8 +22,11 @@ import com.bladir.database_service.UserServiceImpl;
 @EntityScan("com.bladir") 
 public class App 
 {
-	//@Autowired
-	//private static UserService userService;
+	@PostConstruct
+	void started() {
+	    TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+	}
+	
     public static void main( String[] args )
     {
         SpringApplication.run(App.class, args);
