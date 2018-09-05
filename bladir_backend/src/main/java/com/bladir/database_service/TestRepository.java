@@ -1,6 +1,5 @@
 package com.bladir.database_service;
 
-import com.bladir.entity.Record;
 import com.bladir.entity.Test;
 import com.bladir.entity.User;
 import org.springframework.data.repository.CrudRepository;

@@ -1,11 +1,7 @@
 package com.bladir.database_service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.bladir.entity.Role;
 import com.bladir.entity.User;
 import com.bladir.exception.UserNotFoundException;
 
