@@ -35,7 +35,7 @@ Deployment the website: ng build --aot
 
 * [Spring](https://spring.io/) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
-* [AngularJS](https://angularjs.org/) - JavaScript-based open-source front-end web application framework 
+* [Angular 6](https://angular.io/) - TypeScript-based open-source front-end web application platform
 * [Mysql](https://www.mysql.com/) - MySQL is an open-source relational database management system.
 
 ## Authors
