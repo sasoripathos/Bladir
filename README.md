@@ -26,7 +26,7 @@ Deployment the website: ng build --aot
 4. cd ..\bladir_backend
 5. run create.sql script in src/main/resources/create.sql to create a MySQL database.
 6. change applicatino.properties in line 7-8 by your own sql server username and password.
-7. maven clean install
+7. mvn clean install
 8. run backend with: java -jar target/bladir_backend-0.0.1-SNAPSHOT.jar
 ```
 
