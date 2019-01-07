@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 ```
-Angular 6, Java, Mysql, Maven
+Angular 6, Java 8, Mysql, Maven
 ```
 
 ### Installing
@@ -24,11 +24,10 @@ Angular 6, Java, Mysql, Maven
 Running the website: ng serve --aot
 Deployment the website: ng build --aot
 4. cd ..\bladir_backend
-5. run create.sql script in src/main/resources/create.sql to create a database.
+5. run create.sql script in src/main/resources/create.sql to create a MySQL database.
 6. change applicatino.properties in line 7-8 by your own sql server username and password.
-7. maven clean install
+7. mvn clean install
 8. run backend with: java -jar target/bladir_backend-0.0.1-SNAPSHOT.jar
-(Note:If there are any errors about time, change your computer's time zone to UTC)
 ```
 
 
@@ -36,7 +35,7 @@ Deployment the website: ng build --aot
 
 * [Spring](https://spring.io/) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
-* [AngularJS](https://angularjs.org/) - JavaScript-based open-source front-end web application framework 
+* [Angular 6](https://angular.io/) - TypeScript-based open-source front-end web application platform
 * [Mysql](https://www.mysql.com/) - MySQL is an open-source relational database management system.
 
 ## Authors
