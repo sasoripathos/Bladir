@@ -23,6 +23,7 @@
     "angular2-echarts": "^1.2.1",
     "core-js": "^2.5.4",
     "echarts": "^4.1.0",
+    "lodash": "^4.17.11",
     "ngx-echarts": "^4.0.0",
     "rxjs": "^6.0.0",
     "tar": "^4.4.8",
